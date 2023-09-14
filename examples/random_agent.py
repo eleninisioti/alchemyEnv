@@ -13,7 +13,8 @@
 # limitations under the License.
 # ============================================================================
 """Example random agent for interacting with DeepMind Alchemy environment."""
-
+import sys
+sys.path.insert(0,'.')
 from absl import app
 from absl import flags
 from absl import logging
