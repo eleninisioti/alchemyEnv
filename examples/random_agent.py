@@ -21,6 +21,7 @@ from absl import logging
 import dm_alchemy
 from dm_env import specs
 import numpy as np
+import time
 
 FLAGS = flags.FLAGS
 
@@ -61,11 +62,15 @@ def main(_):
       name=FLAGS.docker_image_name, settings=env_settings) as env:
     agent = RandomAgent(env.action_spec())
 
+    print(type(env))
+
     timestep = env.reset()
     score = 0
     while not timestep.last():
       action = agent.act()
+      now = time.time()
       timestep = env.step(action)
+      print(str(time.time()-now))
 
       if timestep.reward:
         score += timestep.reward
